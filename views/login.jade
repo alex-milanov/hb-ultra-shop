@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	h3 Login Form
+	form#login-form
+		.form-group
+			label Email
+			input.form-control(name="email",placeholder="test@test.com")
+		.form-group
+			label Password
+			input.form-control(name="password",type="password",placeholder="*********")
+		button(type="submit") Login
+
+block scripts
+	script.
+		$(document).ready(function(){
+			$("#login-form").submit(function(e){
+				var data = helpers.getDataFromForm($(this));
+				console.log(data);
+
+				$.ajax({
+					url: "/auth/login", // api endpoint
+					method: "post",          // method
+					data: data,
+					contentType: "application/x-www-form-urlencoded",
+					dataType: "json" 
+				})
+				e.preventDefault();
+			})
+		})

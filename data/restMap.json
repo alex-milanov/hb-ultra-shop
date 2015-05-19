@@ -1,0 +1,40 @@
+{
+	"collections" : {
+		"users": {
+			"model": "User",
+			"schema": {
+				"name" : "String",
+				"email" : "String"
+			}
+		},
+		"products": {
+			"model": "Product",
+			"schema": {
+				"name": "String",
+				"desc": "String",
+				"picture": "String",
+				"price": "Number",
+				"categories": ["String"]
+			}
+		},
+		"categories": {
+			"model": "Category",
+			"schema": {
+				"name": "String",
+				"order": "Number"
+			}
+		}
+	},
+	"routes": {
+		"api" : {
+			"_meta": {
+				"virtual": true,
+				"crud": true,
+				"contentType": "json"
+			},
+			"users": {},
+			"products": {},
+			"categories": {}
+		}
+	}
+}

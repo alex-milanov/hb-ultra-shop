@@ -1,0 +1,23 @@
+{
+  "name": "1-bootstrap-shop",
+  "version": "0.0.0",
+  "authors": [
+    "Alex Milanov <alex@i4web.biz>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "fontawesome": "~4.3.0",
+    "q": "1.x",
+    "moment": "~2.10.3",
+    "lodash": "~3.8.0"
+  }
+}
