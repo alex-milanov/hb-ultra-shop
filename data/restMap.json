@@ -1,11 +1,7 @@
 {
 	"collections" : {
 		"users": {
-			"model": "User",
-			"schema": {
-				"name" : "String",
-				"email" : "String"
-			}
+			"model": "User"
 		},
 		"products": {
 			"model": "Product",

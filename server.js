@@ -2,14 +2,8 @@
 
 // require the dependencies
 var express = require('express');
-var fs = require('fs');
-var mongoose = require("mongoose");
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+var mongoose = require('mongoose');
 
-// restify
-var restify = require("iblokz-node-restify");
-var restMap = require("./data/restMap.json");
 
 // declare the app
 var app = express();
@@ -17,48 +11,14 @@ var app = express();
 // connect to db
 var db = mongoose.connect("mongodb://localhost/ultra-shop");
 
-// load model
-restify.loadModel(restMap, db);
+// Init the express application
+require('./app/express')(app, db);
 
+// Bootstrap passport config
+require('./app/routes')(app);
 
-// configure the app
-app.use(express.static('public'));
-app.set('view engine', 'jade');
-
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(bodyParser.json());
-app.use(methodOverride());
-
-// routes
-app.get('/', function (req, res) {
-  res.render('index');
-})
-
-// listen for files: /product.html -> /views/product.jade
-app.get("/:fileName", function(req, res, next){
-  if(req.params && req.params.fileName){
-    var fileName = req.params.fileName.replace(".html","");
-
-    // if jade file exists
-    if(fs.existsSync(__dirname+"/views/"+fileName+".jade")){
-      res.render(fileName);
-    // if post is in posts
-    } else {
-      next();
-    }
-
-  } else {
-    next();
-  }
-})
-
-
-app.post("/auth/login", function(req, res){
-  console.log(req.body);
-})
+// Bootstrap passport config
+require('./app/passport')();
 
 // launch the server
 var server = app.listen(3000, function () {
