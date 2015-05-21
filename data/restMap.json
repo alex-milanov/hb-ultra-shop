@@ -1,8 +1,5 @@
 {
 	"collections" : {
-		"users": {
-			"model": "User"
-		},
 		"products": {
 			"model": "Product",
 			"schema": {
@@ -18,6 +15,14 @@
 			"schema": {
 				"name": "String",
 				"order": "Number"
+			}
+		},
+		"users": {
+			"model": "User",
+			"schema": {
+				"name": "String",
+				"email": "String",
+				"password": "String"
 			}
 		}
 	},

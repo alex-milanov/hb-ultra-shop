@@ -14,8 +14,6 @@ var db = mongoose.connect("mongodb://localhost/ultra-shop");
 // Init the express application
 require('./app/express')(app, db);
 
-// Bootstrap passport config
-require('./app/routes')(app);
 
 // Bootstrap passport config
 require('./app/passport')();

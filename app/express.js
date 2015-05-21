@@ -24,10 +24,8 @@ var restMap = require("../data/restMap.json");
 module.exports = function(app, db){
 
 
-	// init additional model from restify
-	restify.loadModel(restMap);
 
-	require(__dirname+'/models/user.js');
+	restify.loadModel(restMap, db);
 
 	// config stuff
 
@@ -41,9 +39,9 @@ module.exports = function(app, db){
 	app.use(bodyParser.json());
 	app.use(methodOverride());
     
-    var seed = '178lus1j5n3123ra';
-
+    var seed = 'lumbatumbass';
 	app.use(cookieParser(seed));
+	
 	app.use(session({
 		saveUninitialized: true,
 		resave: true,
@@ -60,6 +58,7 @@ module.exports = function(app, db){
 		},
 		name: 'connect.sid'
 	}));
+
 	app.use(passport.initialize());
 	app.use(passport.session());
 
@@ -68,9 +67,11 @@ module.exports = function(app, db){
 	app.use(express.static(__dirname+"/../public"));
 
 
+	// Bootstrap passport config
+	require('./routes')(app);
 
 	// TODO: load additional routes
-	restify.initRoutes(app,restMap,{});
+	restify.initRoutes(app,restMap,{}, db);
 
 	return app;
 }

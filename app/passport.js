@@ -20,7 +20,7 @@ module.exports = function() {
 	});
 
 	// Initialize strategies
-	fileUtil.walk('./app/strategies', /(.*)\.(js$|coffee$)/).forEach(function(strategyPath) {
+	fileUtil.walk(__dirname+'/strategies', /(.*)\.(js$|coffee$)/).forEach(function(strategyPath) {
 		require(path.resolve(strategyPath))();
 	});
 };
