@@ -15,17 +15,21 @@ html
 				
 				.collapse.navbar-collapse#my-menu
 					ul.nav.navbar-nav.navbar-left
-						li: a(href="#/promos")
-							i.fa.fa-star-o &nbsp;
-							| Promos
+						li: a(href="#/admin") Admin
+					ul.nav.navbar-nav.navbar-left
+						li: a(href="#/admin/products") Products
+					ul.nav.navbar-nav.navbar-left
+						li: a(href="#/admin/categories") Categories
+					ul.nav.navbar-nav.navbar-left
+						li: a(href="#/admin/users") Users
 					ul.nav.navbar-nav.navbar-right
 						li: a(href="#/cart")
 							i.fa.fa-shopping-cart &nbsp;
 							| View Cart
 
 
-		.container-fluid
-			.row
+		.container-fluid#container
+			//-.row
 				.col-xs-12.col-sm-3#sidebar
 					//- sidebar / nav
 					
@@ -42,5 +46,7 @@ html
 		script(src="/js/tools/resource.js")
 		script(src="/js/tools/router.js")
 		//- app
+		script(src="/js/controllers/admin/products.js")
+		script(src="/js/controllers/admin/categories.js")
+		script(src="/js/controllers/admin/users.js")
 		script(src="/js/init.js")
-		

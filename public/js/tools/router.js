@@ -1,7 +1,8 @@
+"use strict"
 
 var Router = (function(){
 
-	// url, callback, default
+	// url, callback, default, view, container
 	var routes = [];
 
 	var addRoute = function(route){
@@ -9,13 +10,58 @@ var Router = (function(){
 		return this;
 	}
 
-	var handleHashChange = function(){
-		url = location.hash.slice(1) || '/';
+	var execRoute = function(urlChain,depth){
+		var url = "/";
+		var currentChain = urlChain.slice();
+		if(depth>0){
+			currentChain.splice(depth+1,urlChain.length-depth-1);
+			var url = currentChain.join("/");
+		}
+
+		var currentStepPromise;
+
 		routes.forEach(function(route){
-			if(route.url == url){
-				route.callback();
+			if(route.url === url){
+				if(route.view && route.container){
+					if(route.callback){
+						currentStepPromise = function(){
+							return route.callback(route.view, route.container);
+						}
+					} else {
+						currentStepPromise = function(){
+							return helpers.displayWithJade(route.container,route.view,{});
+						}
+					}
+				}		
 			}
 		})
+
+		var nextStepsPromise;
+
+		if(typeof urlChain[depth+1] !== "undefined"){
+			nextStepsPromise = function(){
+				console.log(urlChain,depth);
+				return execRoute(urlChain,depth+1);
+			}
+		}
+
+		if(nextStepsPromise){
+			if(currentStepPromise){
+				return currentStepPromise().then(nextStepsPromise);
+			} 
+			return nextStepsPromise();
+		}
+
+		return currentStepPromise();
+	}
+
+	var handleHashChange = function(){
+		var url = location.hash.slice(1) || '/';
+
+		var urlChain = (url === "/") ? [url] : url.split("/");
+		
+		execRoute(urlChain, 0);
+		
 	}
 
 	var init = function(){

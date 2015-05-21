@@ -1,5 +1,4 @@
-h2 Products
-
+h3 Home -> Admin -> Products
 .row
 	.col-sm-4
 		form.well#products-form
@@ -31,13 +30,14 @@ h2 Products
 				th Category
 				th Actions
 			tbody
-				each product in products
-					tr
-						td= product.name
-						td= product.picture
-						td= product.price
-						td= product.category
-						td
-							a.btn.btn-primary.action-edit(data-id=product._id) edit
-							| &nbsp; 
-							a.btn.btn-danger.action-delete(data-id=product._id) delete
+				if products
+					each product in products
+						tr
+							td= product.name
+							td= product.picture
+							td= product.price
+							td= product.category
+							td
+								a.btn.btn-primary.action-edit(data-id=product._id) edit
+								| &nbsp; 
+								a.btn.btn-danger.action-delete(data-id=product._id) delete

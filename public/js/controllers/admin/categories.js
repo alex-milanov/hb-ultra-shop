@@ -4,17 +4,20 @@
 
 var CategoriesCtrl = (function(){
 
+
+	var container;
+	var view;
+
 	var categoryRes = new Resource("/api/categories");
 
 	var list = function(){
 		return categoryRes.query().then(function(result){
-			var container = $("#content");
-			var tplName = "views/admin/categories.jade"
+			
 			var data = {
 				categories: result.list
 			};
 
-			return helpers.displayWithJade(container, tplName, data);	
+			return helpers.displayWithJade(container, view, data);	
 		})
 	}
 
@@ -63,33 +66,34 @@ var CategoriesCtrl = (function(){
 		})
 	}
 
-	var init = function(){
+	var init = function(_view, _container){
 
-		
-		$("#content").unbind();
+		container = _container;
+		view = _view;
 
-		$("#content").on("submit", "#categories-form",function(event){
+		$(container).unbind();
+
+		$(container).on("submit", "#categories-form",function(event){
 			var data = helpers.getDataFromForm($(this));
 			save(data);
 			event.preventDefault();
 		})
 
-		$("#content").on("click", ".action-reset",function(event){
+		$(container).on("click", ".action-reset",function(event){
 			reset();
 		})
 
-		$("#content").on("click", ".action-delete", function(){
+		$(container).on("click", ".action-delete", function(){
 			var id = $(this).data("id");
 			remove(id);
 		})
 
-		$("#content").on("click", ".action-edit", function(){
+		$(container).on("click", ".action-edit", function(){
 			var id = $(this).data("id");
 			edit(id);
 		})
 
 		return list();
-
 	}
 
 	return {

@@ -35,37 +35,5 @@ html
 		script(src="/js/tools/helpers.js")
 		script(src="/js/tools/resource.js")
 		script(src="/js/tools/router.js")
-		//- app
-		script(src="/js/controllers/admin/products.js")
-		script(src="/js/controllers/admin/categories.js")
-		script(src="/js/controllers/admin/users.js")
-		script.
-			Router
-				.addRoute({
-					"url": "/admin/",
-					"default": true,
-					"callback": function(){
-						helpers.displayWithJade("#content","views/admin/home.jade");
-					}
-				})
-				.addRoute({
-					"url": "/admin/products",
-					"callback": ProductsCtrl.init
-				})
-				.addRoute({
-					"url": "/admin/categories",
-					"callback": CategoriesCtrl.init
-				})
-				.addRoute({
-					"url": "/admin/users",
-					"callback": UsersCtrl.init
-				})
-				
-				.addRoute({
-					"url": "/login",
-					"callback": function(){
-						helpers.displayWithJade("#content","views/login.jade");
-					}
-				})
-				.init();
+	
 		

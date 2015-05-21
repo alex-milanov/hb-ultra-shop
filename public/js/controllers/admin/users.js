@@ -4,17 +4,21 @@
 
 var UsersCtrl = (function(){
 
+
+	var container;
+	var view;
+
 	var userRes = new Resource("/api/users");
 
 	var list = function(){
 		return userRes.query().then(function(result){
-			var container = $("#content");
-			var tplName = "views/admin/users.jade"
+			
+
 			var data = {
 				users: result.list
 			};
 
-			return helpers.displayWithJade(container, tplName, data);	
+			return helpers.displayWithJade(container, view, data);	
 		})
 	}
 
@@ -63,26 +67,29 @@ var UsersCtrl = (function(){
 		})
 	}
 
-	var init = function(){
+	var init = function(_view, _container){
 
-		$("#content").unbind();
+		container = _container;
+		view = _view;
 
-		$("#content").on("submit", "#users-form",function(event){
+		$(container).unbind();
+
+		$(container).on("submit", "#users-form",function(event){
 			var data = helpers.getDataFromForm($(this));
 			save(data);
 			event.preventDefault();
 		})
 
-		$("#content").on("click", ".action-reset",function(event){
+		$(container).on("click", ".action-reset",function(event){
 			reset();
 		})
 
-		$("#content").on("click", ".action-delete", function(){
+		$(container).on("click", ".action-delete", function(){
 			var id = $(this).data("id");
 			remove(id);
 		})
 
-		$("#content").on("click", ".action-edit", function(){
+		$(container).on("click", ".action-edit", function(){
 			var id = $(this).data("id");
 			edit(id);
 		})
