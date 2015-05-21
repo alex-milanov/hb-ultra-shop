@@ -15,7 +15,7 @@ module.exports = function(app){
 			var fileName = req.params.fileName.replace(".html","");
 
 			// if jade file exists
-			if(fs.existsSync(__dirname+"/views/"+fileName+".jade")){
+			if(fs.existsSync(__dirname+"/../views/"+fileName+".jade")){
 				res.render(fileName);
 			// if post is in posts
 			} else {

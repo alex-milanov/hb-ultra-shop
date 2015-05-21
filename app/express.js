@@ -42,7 +42,7 @@ module.exports = function(app, db){
     var seed = 'lumbatumbass';
 	app.use(cookieParser(seed));
 	
-	app.use(session({
+	/*app.use(session({
 		saveUninitialized: true,
 		resave: true,
 		secret: seed,
@@ -57,7 +57,7 @@ module.exports = function(app, db){
 			maxAge: 3600000
 		},
 		name: 'connect.sid'
-	}));
+	}));*/
 
 	app.use(passport.initialize());
 	app.use(passport.session());
