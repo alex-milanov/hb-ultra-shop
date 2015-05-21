@@ -1,0 +1,30 @@
+h2 Categories
+
+.row
+	.col-sm-4
+		form.well#categories-form
+			.form-group
+				label Name
+				input.form-control(name="name",type="text")
+			.form-group
+				label Order
+				input.form-control(name="order",type="number")
+			input(type="hidden",name="_id",value="")
+			button.btn.btn-primary(type="submit") Save
+			button.btn.btn-default.action-reset(type="button") Reset
+
+	.col-sm-8
+		table.table
+			thead: tr
+				th Name
+				th Order
+				th Actions
+			tbody
+				each category in categories
+					tr
+						td= category.name
+						td= category.order
+						td
+							a.btn.btn-primary.action-edit(data-id=category._id) edit
+							| &nbsp; 
+							a.btn.btn-danger.action-delete(data-id=category._id) delete

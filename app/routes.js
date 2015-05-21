@@ -9,6 +9,10 @@ module.exports = function(app){
 		res.render('index');
 	})
 
+	app.get('/admin/', function (req, res) {
+		res.render('admin/index');
+	})
+
 	// listen for files: /product.html -> /views/product.jade
 	app.get("/:fileName", function(req, res, next){
 		if(req.params && req.params.fileName){

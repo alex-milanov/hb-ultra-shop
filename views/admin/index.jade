@@ -1,0 +1,71 @@
+html
+	head
+		title Bootstrap Shop
+		link(rel="stylesheet",type="text/css",href="/lib/bootstrap/dist/css/bootstrap.css")
+		link(rel="stylesheet",type="text/css",href="/lib/fontawesome/css/font-awesome.css")
+	body
+
+		//- header / navbar
+		nav.navbar.navbar-default
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle.collapsed(data-toggle="collapse",data-target="#my-menu")
+						i.fa.fa-bars
+					a(href="#/admin/").navbar-brand Bootstrap Shop
+				
+				.collapse.navbar-collapse#my-menu
+					ul.nav.navbar-nav.navbar-left
+						li: a(href="#/admin/products") Products
+						li: a(href="#/admin/categories") Categories
+						li: a(href="#/admin/users") User
+					ul.nav.navbar-nav.navbar-right
+						li: a(href="#/auth/logout") Logout
+
+
+		.container-fluid
+			//- content
+			#content
+			
+		//- dependencies
+		script(src="lib/jquery/dist/jquery.js")
+		script(src="lib/bootstrap/dist/js/bootstrap.js")
+		script(src="lib/q/q.js")
+		script(src="lib/jade/jade.js")
+		//- tools
+		script(src="/js/tools/helpers.js")
+		script(src="/js/tools/resource.js")
+		script(src="/js/tools/router.js")
+		//- app
+		script(src="/js/controllers/admin/products.js")
+		script(src="/js/controllers/admin/categories.js")
+		script(src="/js/controllers/admin/users.js")
+		script.
+			Router
+				.addRoute({
+					"url": "/admin/",
+					"default": true,
+					"callback": function(){
+						helpers.displayWithJade("#content","views/admin/home.jade");
+					}
+				})
+				.addRoute({
+					"url": "/admin/products",
+					"callback": ProductsCtrl.init
+				})
+				.addRoute({
+					"url": "/admin/categories",
+					"callback": CategoriesCtrl.init
+				})
+				.addRoute({
+					"url": "/admin/users",
+					"callback": UsersCtrl.init
+				})
+				
+				.addRoute({
+					"url": "/login",
+					"callback": function(){
+						helpers.displayWithJade("#content","views/login.jade");
+					}
+				})
+				.init();
+		

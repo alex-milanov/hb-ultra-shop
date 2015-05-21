@@ -3,6 +3,15 @@ var helpers = function(){
 
 	var displayWithJade = function(container, fileName, data){
 
+		// if passed string create a jquery object
+		if(typeof container === "string"){
+			container = $(container);
+		}
+
+		if(typeof data === "undefined"){
+			data = {};
+		}
+
 		// get the file with jquery
 		return Q($.get(fileName)).then(function(jadeCode){
 

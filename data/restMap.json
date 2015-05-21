@@ -7,7 +7,7 @@
 				"desc": "String",
 				"picture": "String",
 				"price": "Number",
-				"categories": ["String"]
+				"category": "String"
 			}
 		},
 		"categories": {

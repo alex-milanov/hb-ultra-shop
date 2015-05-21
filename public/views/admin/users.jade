@@ -1,0 +1,32 @@
+h2 Users
+
+.row
+	.col-sm-4
+		form.well#users-form
+			.form-group
+				label Name
+				input.form-control(name="name",type="text")
+			.form-group
+				label Email
+				input.form-control(name="email",type="text")
+			.form-group
+				label Password
+				input.form-control(name="password",type="password")
+			input(type="hidden",name="_id",value="")
+			button.btn.btn-primary(type="submit") Save
+			button.btn.btn-default.action-reset(type="button") Reset
+
+	.col-sm-8
+		table.table
+			thead: tr
+				th Name
+				th Email
+			tbody
+				each user in users
+					tr
+						td= user.name
+						td= user.email
+						td
+							a.btn.btn-primary.action-edit(data-id=user._id) edit
+							| &nbsp; 
+							a.btn.btn-danger.action-delete(data-id=user._id) delete

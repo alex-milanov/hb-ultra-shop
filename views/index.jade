@@ -1,13 +1,46 @@
-extends layout
+html
+	head
+		title Bootstrap Shop
+		link(rel="stylesheet",type="text/css",href="/lib/bootstrap/dist/css/bootstrap.css")
+		link(rel="stylesheet",type="text/css",href="/lib/fontawesome/css/font-awesome.css")
+	body
 
-block content
-	//- content
-	.row
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 1
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 2
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 3
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 4
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 5
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 6
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 7
-		.col-md-3.col-sm-4.col-xs-12: a(href="/product") item 8
+		//- header / navbar
+		nav.navbar.navbar-default
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle.collapsed(data-toggle="collapse",data-target="#my-menu")
+						i.fa.fa-bars
+					a(href="#/").navbar-brand Bootstrap Shop
+				
+				.collapse.navbar-collapse#my-menu
+					ul.nav.navbar-nav.navbar-left
+						li: a(href="#/promos")
+							i.fa.fa-star-o &nbsp;
+							| Promos
+					ul.nav.navbar-nav.navbar-right
+						li: a(href="#/cart")
+							i.fa.fa-shopping-cart &nbsp;
+							| View Cart
+
+
+		.container-fluid
+			.row
+				.col-xs-12.col-sm-3#sidebar
+					//- sidebar / nav
+					
+				.col-xs-12.col-sm-9#content
+					//- content
+
+		//- dependencies
+		script(src="lib/jquery/dist/jquery.js")
+		script(src="lib/bootstrap/dist/js/bootstrap.js")
+		script(src="lib/q/q.js")
+		script(src="lib/jade/jade.js")
+		//- tools
+		script(src="/js/tools/helpers.js")
+		script(src="/js/tools/resource.js")
+		script(src="/js/tools/router.js")
+		//- app
+		script(src="/js/init.js")
+		

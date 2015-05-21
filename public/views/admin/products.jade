@@ -1,0 +1,43 @@
+h2 Products
+
+.row
+	.col-sm-4
+		form.well#products-form
+			.form-group
+				label Name
+				input.form-control(name="name",type="text")
+			.form-group
+				label Picture
+				input.form-control(name="picture",type="text")
+			.form-group
+				label Price
+				input.form-control(name="price",type="number")
+			.form-group
+				label Category
+				input.form-control(name="category",type="text")
+			.form-group
+				label Description
+				textarea.form-control(name="desc")
+			input(type="hidden",name="_id",value="")
+			button.btn.btn-primary(type="submit") Save
+			button.btn.btn-default.action-reset(type="button") Reset
+
+	.col-sm-8
+		table.table
+			thead: tr
+				th Name
+				th Picture
+				th Price
+				th Category
+				th Actions
+			tbody
+				each product in products
+					tr
+						td= product.name
+						td= product.picture
+						td= product.price
+						td= product.category
+						td
+							a.btn.btn-primary.action-edit(data-id=product._id) edit
+							| &nbsp; 
+							a.btn.btn-danger.action-delete(data-id=product._id) delete

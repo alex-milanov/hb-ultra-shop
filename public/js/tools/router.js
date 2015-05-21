@@ -6,25 +6,32 @@ var Router = (function(){
 
 	var addRoute = function(route){
 		routes.push(route)
+		return this;
 	}
 
-	var init = function(){
-		$(window).on("hashchange",function(){
-			 url = location.hash.slice(1) || '/';
-			 console.log(url);
-			 routes.forEach(function(route){
-			 	if(route.url == url){
-			 		route.callback();
-			 	}
-			 })
-		});
-
-		// trigger default route's callback
+	var handleHashChange = function(){
+		url = location.hash.slice(1) || '/';
 		routes.forEach(function(route){
-			if(route.default === true){
+			if(route.url == url){
 				route.callback();
 			}
 		})
+	}
+
+	var init = function(){
+		$(window).on("hashchange",handleHashChange);
+
+		// trigger default route's callback
+		if(location.hash === ""){
+			routes.forEach(function(route){
+				if(route.default === true){
+					route.callback();
+				}
+			})
+		} else {
+			handleHashChange();
+		}
+
 	}
 
 	return {
