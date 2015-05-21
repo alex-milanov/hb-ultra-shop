@@ -2,7 +2,7 @@
 
 // crud
 
-var UsersCtrl = (function(){
+var AdminUsersCtrl = (function(){
 
 
 	var container;

@@ -7,7 +7,8 @@ $(document).ready(function() {
 			"url": "/",
 			"default": true,
 			"view": "views/home.jade",
-			"container": "#container"
+			"container": "body",
+			"callback": HomeCtrl.init
 		})
 		.addRoute({
 			"url": "/cart",
@@ -23,21 +24,42 @@ $(document).ready(function() {
 			"url": "/admin/products",
 			"view": "views/admin/products.jade",
 			"container": "#admin",
-			"callback": ProductsCtrl.init
+			"callback": AdminProductsCtrl.init
 		})
 		.addRoute({
 			"url": "/admin/categories",
 			"view": "views/admin/categories.jade",
 			"container": "#admin",
-			"callback": CategoriesCtrl.init
+			"callback": AdminCategoriesCtrl.init
 		})
 		.addRoute({
 			"url": "/admin/users",
 			"view": "views/admin/users.jade",
 			"container": "#admin",
-			"callback": UsersCtrl.init
+			"callback": AdminUsersCtrl.init
+		})
+		.addRoute({
+			"url": "/auth/login",
+			"callback": function(){
+				Auth.logIn();
+				location.hash = "#/admin/products"
+			}
+		})
+		.addRoute({
+			"url": "/auth/logout",
+			"callback": function(){
+				Auth.logOut();
+				location.hash = "#/"
+			}
 		})
 		.init();
+
+
+		Auth.init([
+			"/admin",
+			"/admin/users",
+			"/admin/categories"
+		])
 //				helpers.displayWithJade("#content","views/admin/home.jade");
 
 		// .addRoute({

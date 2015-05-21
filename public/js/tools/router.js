@@ -5,9 +5,18 @@ var Router = (function(){
 	// url, callback, default, view, container
 	var routes = [];
 
+
+
 	var addRoute = function(route){
 		routes.push(route)
 		return this;
+	}
+
+
+	var routeChangeListeners = [];
+
+	var addRouteChangeListener = function(_listener){
+		routeChangeListeners.push(_listener);
 	}
 
 	var execRoute = function(urlChain,depth){
@@ -32,7 +41,9 @@ var Router = (function(){
 							return helpers.displayWithJade(route.container,route.view,{});
 						}
 					}
-				}		
+				} else if (route.callback){	
+					return route.callback();
+				}
 			}
 		})
 
@@ -59,6 +70,10 @@ var Router = (function(){
 		var url = location.hash.slice(1) || '/';
 
 		var urlChain = (url === "/") ? [url] : url.split("/");
+
+		routeChangeListeners.forEach(function(listener){
+			listener(url, urlChain);
+		})
 		
 		execRoute(urlChain, 0);
 		
@@ -82,6 +97,7 @@ var Router = (function(){
 
 	return {
 		addRoute: addRoute,
+		addRouteChangeListener: addRouteChangeListener,
 		init: init
 	}
 

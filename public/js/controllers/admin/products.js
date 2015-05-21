@@ -2,7 +2,7 @@
 
 // crud
 
-var ProductsCtrl = (function(){
+var AdminProductsCtrl = (function(){
 
 
 	var container;

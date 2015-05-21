@@ -2,7 +2,7 @@
 
 // crud
 
-var CategoriesCtrl = (function(){
+var AdminCategoriesCtrl = (function(){
 
 
 	var container;

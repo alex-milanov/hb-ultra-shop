@@ -1,11 +1,30 @@
-h1 Home
-#content
-	.row
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 1
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 2
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 3
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 4
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 5
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 6
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 7
-			.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 8
+nav.navbar.navbar-default
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle.collapsed(data-toggle="collapse",data-target="#my-menu")
+						i.fa.fa-bars
+					a(href="#/").navbar-brand Bootstrap Shop
+				
+				.collapse.navbar-collapse#my-menu
+					if menuEls
+						each menuEl in menuEls
+							ul.nav.navbar-nav.navbar-left
+								li: a(href=menuEl.url)= menuEl.title
+					ul.nav.navbar-nav.navbar-right
+						li: a(href="#/cart")
+							i.fa.fa-shopping-cart &nbsp;
+							| View Cart
+
+
+		.container-fluid
+			h1 Home
+			#content
+				.row
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 1
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 2
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 3
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 4
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 5
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 6
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 7
+						.col-md-3.col-sm-4.col-xs-12: a(href="#/product") item 8
